@@ -1,0 +1,419 @@
+/**
+ * Admin styles for Reusable QR Codes
+ * Inspired by shadcn/ui design system
+ *
+ * @package Reusable_QR_Codes
+ */
+
+/* ===========================
+   Meta Box Styling (shadcn-inspired)
+   =========================== */
+
+/* Clean meta box headers */
+.postbox .postbox-header h2 {
+	font-size: 14px;
+	font-weight: 600;
+	color: #18181b;
+}
+
+/* Destination URL Field */
+.rqrc-destination-field {
+	padding: 4px 0;
+}
+
+.rqrc-destination-field label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #18181b;
+}
+
+.rqrc-destination-field input[type="url"] {
+	width: 100%;
+	padding: 10px 12px;
+	font-size: 14px;
+	border: 1px solid #e4e4e7;
+	border-radius: 6px;
+	background: #ffffff;
+	transition: all 0.15s ease;
+}
+
+.rqrc-destination-field input[type="url"]:focus {
+	outline: none;
+	border-color: #3b82f6;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.rqrc-destination-field .description {
+	margin-top: 8px;
+	font-size: 13px;
+	color: #71717a;
+	line-height: 1.5;
+}
+
+/* Permalink Info Box */
+.rqrc-permalink-info {
+	margin-top: 16px;
+	padding: 16px;
+	background: #f4f4f5;
+	border: 1px solid #e4e4e7;
+	border-left: 3px solid #3b82f6;
+	border-radius: 6px;
+}
+
+.rqrc-permalink-info p {
+	margin: 0;
+}
+
+.rqrc-permalink-info p + p {
+	margin-top: 12px;
+}
+
+.rqrc-permalink-info strong {
+	font-size: 13px;
+	font-weight: 600;
+	color: #18181b;
+}
+
+.rqrc-permalink-info code {
+	display: inline-block;
+	margin-top: 6px;
+	padding: 6px 10px;
+	background: #ffffff;
+	border: 1px solid #e4e4e7;
+	border-radius: 4px;
+	font-size: 12px;
+	font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+	word-break: break-all;
+	color: #3730a3;
+}
+
+/* Notes Field */
+.rqrc-notes-field label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #18181b;
+}
+
+.rqrc-notes-field textarea {
+	width: 100%;
+	padding: 10px 12px;
+	font-size: 14px;
+	line-height: 1.6;
+	border: 1px solid #e4e4e7;
+	border-radius: 6px;
+	background: #ffffff;
+	resize: vertical;
+	transition: all 0.15s ease;
+}
+
+.rqrc-notes-field textarea:focus {
+	outline: none;
+	border-color: #3b82f6;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.rqrc-notes-field textarea::placeholder {
+	color: #a1a1aa;
+}
+
+.rqrc-notes-field .description {
+	margin-top: 8px;
+	font-size: 13px;
+	color: #71717a;
+	line-height: 1.5;
+}
+
+/* ===========================
+   QR Code Preview Sidebar
+   =========================== */
+
+#rqrc-qr-container {
+	padding: 0;
+}
+
+#rqrc-qrcode {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 280px;
+	padding: 20px;
+	background: #ffffff;
+	border: 1px solid #e4e4e7;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Fix for QR code image being cut off */
+#rqrc-qrcode svg,
+#rqrc-qrcode canvas {
+	max-width: 100% !important;
+	height: auto !important;
+	display: block;
+	border-radius: 8px;
+}
+
+/* Placeholder for unpublished posts */
+.rqrc-placeholder {
+	text-align: center;
+	color: #a1a1aa;
+	padding: 40px 20px;
+	width: 100%;
+}
+
+.rqrc-placeholder-icon {
+	font-size: 64px;
+	margin-bottom: 16px;
+	opacity: 0.2;
+	filter: grayscale(100%);
+}
+
+.rqrc-placeholder-text {
+	font-size: 13px;
+	line-height: 1.8;
+	max-width: 200px;
+	margin: 0 auto;
+}
+
+.rqrc-placeholder-text strong {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #52525b;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+/* Make it look clearly disabled - separate class for compatibility */
+#rqrc-qrcode.rqrc-empty {
+	background: repeating-linear-gradient(
+		45deg,
+		#fafafa,
+		#fafafa 10px,
+		#f4f4f5 10px,
+		#f4f4f5 20px
+	);
+	border: 2px dashed #d4d4d8;
+	box-shadow: none;
+}
+
+/* Download Buttons */
+.rqrc-download-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 20px;
+}
+
+.rqrc-download-buttons .button {
+	width: 100%;
+	height: 44px;
+	padding: 0 20px;
+	font-size: 14px;
+	font-weight: 500;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid #e4e4e7;
+	border-radius: 8px;
+	background: #ffffff;
+	color: #18181b;
+	transition: all 0.2s ease;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.rqrc-download-buttons .button:hover {
+	background: #fafafa;
+	border-color: #d4d4d8;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+	transform: translateY(-1px);
+}
+
+.rqrc-download-buttons .button:active {
+	background: #f4f4f5;
+	transform: translateY(0);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Primary style for PNG download */
+#rqrc-download-png {
+	background: #18181b;
+	color: #ffffff;
+	border-color: #18181b;
+}
+
+#rqrc-download-png:hover {
+	background: #27272a;
+	border-color: #27272a;
+	color: #ffffff;
+}
+
+#rqrc-download-png:active {
+	background: #3f3f46;
+}
+
+/* ===========================
+   Settings Page
+   =========================== */
+
+/* Collapsible Info Box */
+.rqrc-info-box {
+	margin: 20px 0 30px 0;
+	background: #f9f9f9;
+	border-left: 4px solid #3b82f6;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.rqrc-info-toggle {
+	width: 100%;
+	padding: 16px 20px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 15px;
+	color: #18181b;
+	transition: background 0.15s ease;
+	text-align: left;
+}
+
+.rqrc-info-toggle:hover {
+	background: rgba(0, 0, 0, 0.02);
+}
+
+.rqrc-info-toggle strong {
+	flex: 1;
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.rqrc-info-icon {
+	font-size: 18px;
+}
+
+.rqrc-toggle-indicator {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	transition: transform 0.2s ease;
+	color: #71717a;
+}
+
+.rqrc-info-toggle[aria-expanded="true"] .rqrc-toggle-indicator {
+	transform: rotate(180deg);
+}
+
+.rqrc-info-content {
+	padding: 0 20px 20px 20px;
+	background: #f9f9f9;
+}
+
+.rqrc-info-content ol {
+	margin: 0;
+	padding-left: 24px;
+}
+
+.rqrc-info-content li {
+	margin-bottom: 10px;
+	line-height: 1.6;
+	color: #3f3f46;
+	font-size: 14px;
+}
+
+.rqrc-info-content li:last-child {
+	margin-bottom: 0;
+}
+
+.rqrc-settings-section {
+	margin-bottom: 32px;
+}
+
+.rqrc-settings-section h2 {
+	margin-top: 0;
+	margin-bottom: 16px;
+	padding-bottom: 12px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #18181b;
+	border-bottom: 1px solid #e4e4e7;
+}
+
+.rqrc-color-picker {
+	max-width: 100px;
+	height: 40px;
+	border: 1px solid #e4e4e7 !important;
+	border-radius: 6px !important;
+}
+
+/* Settings form fields */
+.form-table th {
+	font-weight: 500;
+	color: #18181b;
+}
+
+.form-table td input[type="text"],
+.form-table td input[type="number"],
+.form-table td select {
+	border: 1px solid #e4e4e7;
+	border-radius: 6px;
+	padding: 8px 12px;
+}
+
+.form-table td input[type="text"]:focus,
+.form-table td input[type="number"]:focus,
+.form-table td select:focus {
+	border-color: #3b82f6;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ===========================
+   Post List Table
+   =========================== */
+
+.column-rqrc_destination {
+	width: 35%;
+}
+
+.column-rqrc_scans {
+	width: 10%;
+	text-align: center;
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media screen and (max-width: 782px) {
+	.rqrc-destination-field input[type="url"],
+	.rqrc-notes-field textarea {
+		font-size: 16px; /* Prevent zoom on mobile */
+	}
+
+	#rqrc-qrcode {
+		min-height: 200px;
+		padding: 12px;
+	}
+
+	.rqrc-download-buttons .button {
+		height: 44px; /* Larger touch target on mobile */
+	}
+}
+
+/* ===========================
+   Dark Mode Support (future)
+   =========================== */
+
+@media (prefers-color-scheme: dark) {
+	/* Will add dark mode styles in future update */
+}

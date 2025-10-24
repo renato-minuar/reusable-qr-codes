@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/renato/**)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(php -l:*)",
+      "Bash(dpkg:*)",
+      "Bash(sudo apt-get install:*)",
+      "Bash(msgfmt:*)",
+      "Bash(wp i18n make-mo:*)",
+      "Bash(find:*)",
+      "Bash(cd:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

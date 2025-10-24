@@ -1,0 +1,209 @@
+# Copyright (C) 2024 Minuar
+# This file is distributed under the same license as the Reusable QR Codes package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Reusable QR Codes 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/qr-code-redirect-manager\n"
+"POT-Creation-Date: 2024-10-23 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "QR Codes"
+msgstr ""
+
+msgid "QR Code"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Add New QR Code"
+msgstr ""
+
+msgid "New QR Code"
+msgstr ""
+
+msgid "Edit QR Code"
+msgstr ""
+
+msgid "View QR Code"
+msgstr ""
+
+msgid "All QR Codes"
+msgstr ""
+
+msgid "Search QR Codes"
+msgstr ""
+
+msgid "No QR codes found."
+msgstr ""
+
+msgid "No QR codes found in Trash."
+msgstr ""
+
+msgid "Destination URL"
+msgstr ""
+
+msgid "Enter the URL where this QR code should redirect:"
+msgstr ""
+
+msgid "This is where visitors will be redirected after scanning the QR code. You can change this anytime without reprinting the QR code."
+msgstr ""
+
+msgid "QR Code URL:"
+msgstr ""
+
+msgid "This is the permanent URL encoded in your QR code. Share this QR code, and change the destination above anytime."
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Internal notes about this QR code (not visible to visitors):"
+msgstr ""
+
+msgid "Add any notes to help you remember where this QR code is used, when it was printed, or any other relevant information."
+msgstr ""
+
+msgid "QR Code Preview"
+msgstr ""
+
+msgid "Not Published Yet"
+msgstr ""
+
+msgid "Your QR code will be generated after you publish this post."
+msgstr ""
+
+msgid "Download PNG"
+msgstr ""
+
+msgid "Download SVG"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "QR Code Settings"
+msgstr ""
+
+msgid "QR Code Appearance"
+msgstr ""
+
+msgid "These settings control the default appearance of all QR codes."
+msgstr ""
+
+msgid "QR Code Color"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Dot Style"
+msgstr ""
+
+msgid "Square"
+msgstr ""
+
+msgid "Dots"
+msgstr ""
+
+msgid "Rounded"
+msgstr ""
+
+msgid "Classy"
+msgstr ""
+
+msgid "Classy Rounded"
+msgstr ""
+
+msgid "The style of dots used in the QR code pattern."
+msgstr ""
+
+msgid "Display Size (px)"
+msgstr ""
+
+msgid "Size of the QR code preview in admin (128-512px). Downloads are always high resolution."
+msgstr ""
+
+msgid "Redirect Settings"
+msgstr ""
+
+msgid "Configure how QR code redirects should behave."
+msgstr ""
+
+msgid "Redirect Type"
+msgstr ""
+
+msgid "302 Temporary (Recommended)"
+msgstr ""
+
+msgid "301 Permanent"
+msgstr ""
+
+msgid "Use 302 (temporary) since you may change destinations. 301 redirects are cached by browsers."
+msgstr ""
+
+msgid "How It Works"
+msgstr ""
+
+msgid "Create a new QR Code and set a destination URL"
+msgstr ""
+
+msgid "Download and print/share the QR code"
+msgstr ""
+
+msgid "Visitors scan the QR code and get redirected to your destination"
+msgstr ""
+
+msgid "Update the destination anytime without reprinting the QR code!"
+msgstr ""
+
+msgid "QR Code updated successfully."
+msgstr ""
+
+msgid "Field updated."
+msgstr ""
+
+msgid "Field deleted."
+msgstr ""
+
+msgid "QR Code updated."
+msgstr ""
+
+msgid "QR Code restored to revision from %s."
+msgstr ""
+
+msgid "QR Code published successfully. Your QR code is now ready to use!"
+msgstr ""
+
+msgid "QR Code saved."
+msgstr ""
+
+msgid "QR Code submitted."
+msgstr ""
+
+msgid "QR Code scheduled for: <strong>%s</strong>"
+msgstr ""
+
+msgid "QR Code draft updated."
+msgstr ""
+
+msgid "QR Code Not Configured"
+msgstr ""
+
+msgid "This QR code does not have a destination URL configured yet."
+msgstr ""
+
+msgid "For Administrators:"
+msgstr ""
+
+msgid "You are seeing this message because no destination URL has been set for this QR code."
+msgstr ""
+
+msgid "Edit QR Code & Set Destination"
+msgstr ""

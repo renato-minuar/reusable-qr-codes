@@ -1,0 +1,216 @@
+# Translation file for Reusable QR Codes - German (Germany)
+# Copyright (C) 2024 Minuar
+# This file is distributed under the same license as the Reusable QR Codes package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Reusable QR Codes 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/qr-code-redirect-manager\n"
+"POT-Creation-Date: 2024-10-23 00:00+0000\n"
+"PO-Revision-Date: 2024-10-23 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Post Type Labels
+msgid "QR Codes"
+msgstr "QR-Codes"
+
+msgid "QR Code"
+msgstr "QR-Code"
+
+msgid "Add New"
+msgstr "Neu Hinzufügen"
+
+msgid "Add New QR Code"
+msgstr "Neuen QR-Code Hinzufügen"
+
+msgid "New QR Code"
+msgstr "Neuer QR-Code"
+
+msgid "Edit QR Code"
+msgstr "QR-Code Bearbeiten"
+
+msgid "View QR Code"
+msgstr "QR-Code Ansehen"
+
+msgid "All QR Codes"
+msgstr "Alle QR-Codes"
+
+msgid "Search QR Codes"
+msgstr "QR-Codes Suchen"
+
+msgid "No QR codes found."
+msgstr "Keine QR-Codes gefunden."
+
+msgid "No QR codes found in Trash."
+msgstr "Keine QR-Codes im Papierkorb gefunden."
+
+# Meta Box Labels
+msgid "Destination URL"
+msgstr "Ziel-URL"
+
+msgid "Enter the URL where this QR code should redirect:"
+msgstr "Geben Sie die URL ein, zu der dieser QR-Code weiterleiten soll:"
+
+msgid "This is where visitors will be redirected after scanning the QR code. You can change this anytime without reprinting the QR code."
+msgstr "Hierhin werden Besucher nach dem Scannen des QR-Codes weitergeleitet. Sie können dies jederzeit ändern, ohne den QR-Code neu zu drucken."
+
+msgid "QR Code URL:"
+msgstr "QR-Code URL:"
+
+msgid "This is the permanent URL encoded in your QR code. Share this QR code, and change the destination above anytime."
+msgstr "Dies ist die permanente URL, die in Ihrem QR-Code codiert ist. Teilen Sie diesen QR-Code und ändern Sie das Ziel jederzeit."
+
+msgid "Notes"
+msgstr "Notizen"
+
+msgid "Internal notes about this QR code (not visible to visitors):"
+msgstr "Interne Notizen zu diesem QR-Code (für Besucher nicht sichtbar):"
+
+msgid "Add any notes to help you remember where this QR code is used, when it was printed, or any other relevant information."
+msgstr "Fügen Sie Notizen hinzu, um sich zu merken, wo dieser QR-Code verwendet wird, wann er gedruckt wurde oder andere relevante Informationen."
+
+msgid "QR Code Preview"
+msgstr "QR-Code Vorschau"
+
+msgid "Not Published Yet"
+msgstr "Noch Nicht Veröffentlicht"
+
+msgid "Your QR code will be generated after you publish this post."
+msgstr "Ihr QR-Code wird nach der Veröffentlichung dieses Beitrags generiert."
+
+msgid "Download PNG"
+msgstr "PNG Herunterladen"
+
+msgid "Download SVG"
+msgstr "SVG Herunterladen"
+
+# Settings Page
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "QR Code Settings"
+msgstr "QR-Code Einstellungen"
+
+msgid "QR Code Appearance"
+msgstr "QR-Code Erscheinungsbild"
+
+msgid "These settings control the default appearance of all QR codes."
+msgstr "Diese Einstellungen steuern das Standard-Erscheinungsbild aller QR-Codes."
+
+msgid "QR Code Color"
+msgstr "QR-Code Farbe"
+
+msgid "Background Color"
+msgstr "Hintergrundfarbe"
+
+msgid "Dot Style"
+msgstr "Punktstil"
+
+msgid "Square"
+msgstr "Quadratisch"
+
+msgid "Dots"
+msgstr "Punkte"
+
+msgid "Rounded"
+msgstr "Abgerundet"
+
+msgid "Classy"
+msgstr "Elegant"
+
+msgid "Classy Rounded"
+msgstr "Elegant Abgerundet"
+
+msgid "The style of dots used in the QR code pattern."
+msgstr "Der Stil der Punkte im QR-Code-Muster."
+
+msgid "Display Size (px)"
+msgstr "Anzeigegröße (px)"
+
+msgid "Size of the QR code preview in admin (128-512px). Downloads are always high resolution."
+msgstr "Größe der QR-Code-Vorschau im Admin (128-512px). Downloads sind immer hochauflösend."
+
+msgid "Redirect Settings"
+msgstr "Weiterleitungseinstellungen"
+
+msgid "Configure how QR code redirects should behave."
+msgstr "Konfigurieren Sie, wie QR-Code-Weiterleitungen funktionieren sollen."
+
+msgid "Redirect Type"
+msgstr "Weiterleitungstyp"
+
+msgid "302 Temporary (Recommended)"
+msgstr "302 Temporär (Empfohlen)"
+
+msgid "301 Permanent"
+msgstr "301 Permanent"
+
+msgid "Use 302 (temporary) since you may change destinations. 301 redirects are cached by browsers."
+msgstr "Verwenden Sie 302 (temporär), da Sie Ziele ändern können. 301-Weiterleitungen werden von Browsern zwischengespeichert."
+
+msgid "How It Works"
+msgstr "So Funktioniert Es"
+
+msgid "Create a new QR Code and set a destination URL"
+msgstr "Erstellen Sie einen neuen QR-Code und legen Sie eine Ziel-URL fest"
+
+msgid "Download and print/share the QR code"
+msgstr "Laden Sie den QR-Code herunter und drucken/teilen Sie ihn"
+
+msgid "Visitors scan the QR code and get redirected to your destination"
+msgstr "Besucher scannen den QR-Code und werden zu Ihrem Ziel weitergeleitet"
+
+msgid "Update the destination anytime without reprinting the QR code!"
+msgstr "Aktualisieren Sie das Ziel jederzeit, ohne den QR-Code neu zu drucken!"
+
+# Update Messages
+msgid "QR Code updated successfully."
+msgstr "QR-Code erfolgreich aktualisiert."
+
+msgid "Field updated."
+msgstr "Feld aktualisiert."
+
+msgid "Field deleted."
+msgstr "Feld gelöscht."
+
+msgid "QR Code updated."
+msgstr "QR-Code aktualisiert."
+
+msgid "QR Code restored to revision from %s."
+msgstr "QR-Code auf Revision von %s wiederhergestellt."
+
+msgid "QR Code published successfully. Your QR code is now ready to use!"
+msgstr "QR-Code erfolgreich veröffentlicht. Ihr QR-Code ist jetzt einsatzbereit!"
+
+msgid "QR Code saved."
+msgstr "QR-Code gespeichert."
+
+msgid "QR Code submitted."
+msgstr "QR-Code eingereicht."
+
+msgid "QR Code scheduled for: <strong>%s</strong>"
+msgstr "QR-Code geplant für: <strong>%s</strong>"
+
+msgid "QR Code draft updated."
+msgstr "QR-Code Entwurf aktualisiert."
+
+# Fallback Template
+msgid "QR Code Not Configured"
+msgstr "QR-Code Nicht Konfiguriert"
+
+msgid "This QR code does not have a destination URL configured yet."
+msgstr "Für diesen QR-Code wurde noch keine Ziel-URL konfiguriert."
+
+msgid "For Administrators:"
+msgstr "Für Administratoren:"
+
+msgid "You are seeing this message because no destination URL has been set for this QR code."
+msgstr "Sie sehen diese Meldung, weil für diesen QR-Code keine Ziel-URL festgelegt wurde."
+
+msgid "Edit QR Code & Set Destination"
+msgstr "QR-Code Bearbeiten & Ziel Festlegen"
