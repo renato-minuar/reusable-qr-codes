@@ -54,6 +54,20 @@ class RQRC_Redirects {
 
 		global $post;
 
+		// Check if QR code is active.
+		$is_active = get_post_meta( $post->ID, '_rqrc_is_active', true );
+
+		// Default to active if not set (for backward compatibility).
+		if ( '' === $is_active ) {
+			$is_active = '1';
+		}
+
+		// If inactive, redirect to homepage.
+		if ( '0' === $is_active ) {
+			wp_redirect( home_url(), 302 );
+			exit;
+		}
+
 		// Get destination URL.
 		$destination = get_post_meta( $post->ID, '_rqrc_destination_url', true );
 

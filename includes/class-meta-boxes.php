@@ -87,8 +87,14 @@ class RQRC_Meta_Boxes {
 		// Add nonce for security.
 		wp_nonce_field( 'rqrc_save_destination', 'rqrc_destination_nonce' );
 
-		// Get current value.
+		// Get current values.
 		$destination = get_post_meta( $post->ID, '_rqrc_destination_url', true );
+		$is_active   = get_post_meta( $post->ID, '_rqrc_is_active', true );
+
+		// Default to active if not set.
+		if ( '' === $is_active ) {
+			$is_active = '1';
+		}
 
 		?>
 		<div class="rqrc-destination-field">
@@ -110,6 +116,22 @@ class RQRC_Meta_Boxes {
 			</p>
 			<p class="description">
 				<?php esc_html_e( 'This is where visitors will be redirected after scanning the QR code. You can change this anytime without reprinting the QR code.', 'reusable-qr-codes' ); ?>
+			</p>
+
+			<p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+				<label for="rqrc_is_active" style="display: flex; align-items: center; gap: 10px;">
+					<input
+						type="checkbox"
+						id="rqrc_is_active"
+						name="rqrc_is_active"
+						value="1"
+						<?php checked( $is_active, '1' ); ?>
+					/>
+					<strong><?php esc_html_e( 'QR Code is Active', 'reusable-qr-codes' ); ?></strong>
+				</label>
+			</p>
+			<p class="description">
+				<?php esc_html_e( 'When inactive, this QR code will redirect to your homepage instead of the destination URL above.', 'reusable-qr-codes' ); ?>
 			</p>
 		</div>
 		<?php
@@ -213,6 +235,10 @@ class RQRC_Meta_Boxes {
 		} else {
 			delete_post_meta( $post_id, '_rqrc_destination_url' );
 		}
+
+		// Save active status.
+		$is_active = isset( $_POST['rqrc_is_active'] ) ? '1' : '0';
+		update_post_meta( $post_id, '_rqrc_is_active', $is_active );
 
 		// Save notes.
 		if ( isset( $_POST['rqrc_notes'] ) ) {

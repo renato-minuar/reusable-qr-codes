@@ -40,6 +40,9 @@ class RQRC_Post_Type {
 	private function __construct() {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
+		add_filter( 'manage_rqrc_item_posts_columns', array( $this, 'add_custom_columns' ) );
+		add_action( 'manage_rqrc_item_posts_custom_column', array( $this, 'render_custom_columns' ), 10, 2 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_list_scripts' ) );
 	}
 
 	/**
@@ -127,5 +130,139 @@ class RQRC_Post_Type {
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		return $messages;
+	}
+
+	/**
+	 * Add custom columns to QR codes list.
+	 *
+	 * @param array $columns Existing columns.
+	 * @return array Modified columns.
+	 */
+	public function add_custom_columns( $columns ) {
+		// Remove date column.
+		unset( $columns['date'] );
+
+		// Add custom columns.
+		$columns['rqrc_status']      = __( 'Status', 'reusable-qr-codes' );
+		$columns['rqrc_destination'] = __( 'Destination', 'reusable-qr-codes' );
+		$columns['rqrc_download']    = __( 'Download', 'reusable-qr-codes' );
+
+		return $columns;
+	}
+
+	/**
+	 * Render custom column content.
+	 *
+	 * @param string $column  Column name.
+	 * @param int    $post_id Post ID.
+	 */
+	public function render_custom_columns( $column, $post_id ) {
+		switch ( $column ) {
+			case 'rqrc_status':
+				$is_active = get_post_meta( $post_id, '_rqrc_is_active', true );
+				// Default to active if not set.
+				if ( '' === $is_active ) {
+					$is_active = '1';
+				}
+
+				if ( '1' === $is_active ) {
+					echo '<span style="color: #46b450; font-weight: 600;">●</span> ';
+					esc_html_e( 'Active', 'reusable-qr-codes' );
+				} else {
+					echo '<span style="color: #dc3232; font-weight: 600;">●</span> ';
+					esc_html_e( 'Inactive', 'reusable-qr-codes' );
+				}
+				break;
+
+			case 'rqrc_destination':
+				$destination = get_post_meta( $post_id, '_rqrc_destination_url', true );
+				if ( $destination ) {
+					// Truncate long URLs.
+					$display_url = strlen( $destination ) > 50 ? substr( $destination, 0, 47 ) . '...' : $destination;
+					echo '<a href="' . esc_url( $destination ) . '" target="_blank" rel="noopener" title="' . esc_attr( $destination ) . '">';
+					echo esc_html( $display_url );
+					echo ' <span class="dashicons dashicons-external" style="font-size: 14px; vertical-align: middle;"></span>';
+					echo '</a>';
+				} else {
+					echo '<span style="color: #999;">' . esc_html__( 'No destination set', 'reusable-qr-codes' ) . '</span>';
+				}
+				break;
+
+			case 'rqrc_download':
+				$permalink = get_permalink( $post_id );
+				$title     = get_the_title( $post_id );
+				?>
+				<div class="rqrc-list-download-buttons">
+					<button
+						class="button button-small rqrc-download-list-png"
+						data-permalink="<?php echo esc_attr( $permalink ); ?>"
+						data-title="<?php echo esc_attr( $title ); ?>"
+						title="<?php esc_attr_e( 'Download PNG', 'reusable-qr-codes' ); ?>"
+					>
+						PNG
+					</button>
+					<button
+						class="button button-small rqrc-download-list-svg"
+						data-permalink="<?php echo esc_attr( $permalink ); ?>"
+						data-title="<?php echo esc_attr( $title ); ?>"
+						title="<?php esc_attr_e( 'Download SVG', 'reusable-qr-codes' ); ?>"
+					>
+						SVG
+					</button>
+				</div>
+				<?php
+				break;
+		}
+	}
+
+	/**
+	 * Enqueue scripts for QR codes list page.
+	 *
+	 * @param string $hook Current admin page hook.
+	 */
+	public function enqueue_list_scripts( $hook ) {
+		// Only load on QR codes list page.
+		if ( 'edit.php' !== $hook || ! isset( $_GET['post_type'] ) || 'rqrc_item' !== $_GET['post_type'] ) {
+			return;
+		}
+
+		// Enqueue QR code library.
+		wp_enqueue_script(
+			'rqrc-qrcode-styling',
+			RQRC_PLUGIN_URL . 'assets/vendor/QrCodeStyling.min.js',
+			array(),
+			RQRC_VERSION,
+			true
+		);
+
+		// Enqueue list download script.
+		wp_enqueue_script(
+			'rqrc-list-download',
+			RQRC_PLUGIN_URL . 'admin/js/qr-list-download.js',
+			array( 'jquery', 'rqrc-qrcode-styling' ),
+			RQRC_VERSION,
+			true
+		);
+
+		// Get plugin settings.
+		$settings = get_option( 'rqrc_settings', array() );
+
+		// Pass settings to JavaScript.
+		wp_localize_script(
+			'rqrc-list-download',
+			'rqrcListData',
+			array(
+				'qrColor'    => isset( $settings['qr_color'] ) ? $settings['qr_color'] : '#000000',
+				'qrBgColor'  => isset( $settings['qr_bg_color'] ) ? $settings['qr_bg_color'] : '#ffffff',
+				'qrDotStyle' => isset( $settings['qr_dot_style'] ) ? $settings['qr_dot_style'] : 'square',
+			)
+		);
+
+		// Add inline styles for download buttons.
+		wp_add_inline_style(
+			'wp-admin',
+			'.rqrc-list-download-buttons { display: flex; gap: 4px; }
+			.rqrc-list-download-buttons .button-small { padding: 2px 8px; font-size: 11px; height: auto; line-height: 1.5; }'
+		);
 	}
 }
