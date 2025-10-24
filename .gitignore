@@ -20,6 +20,9 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Node modules (if you add build tools later)
 node_modules/
 npm-debug.log
