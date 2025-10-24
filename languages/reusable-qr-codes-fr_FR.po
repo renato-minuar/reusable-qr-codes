@@ -214,3 +214,33 @@ msgstr "Vous voyez ce message car aucune URL de destination n'a été définie p
 
 msgid "Edit QR Code & Set Destination"
 msgstr "Modifier le QR Code et Définir la Destination"
+
+msgid "QR Code is Active"
+msgstr "Le code QR est actif"
+
+msgid "When inactive, this QR code will redirect to your homepage instead of the destination URL above."
+msgstr "Lorsqu'il est inactif, ce code QR redirigera vers votre page d'accueil au lieu de l'URL de destination ci-dessus."
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Destination"
+msgstr "Destination"
+
+msgid "Download"
+msgstr "Télécharger"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "Inactive"
+msgstr "Inactif"
+
+msgid "No destination set"
+msgstr "Aucune destination définie"
+
+msgid "Download PNG"
+msgstr "Télécharger PNG"
+
+msgid "Download SVG"
+msgstr "Télécharger SVG"

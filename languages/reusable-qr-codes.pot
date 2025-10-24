@@ -207,3 +207,33 @@ msgstr ""
 
 msgid "Edit QR Code & Set Destination"
 msgstr ""
+
+msgid "QR Code is Active"
+msgstr ""
+
+msgid "When inactive, this QR code will redirect to your homepage instead of the destination URL above."
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Destination"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "No destination set"
+msgstr ""
+
+msgid "Download PNG"
+msgstr ""
+
+msgid "Download SVG"
+msgstr ""
