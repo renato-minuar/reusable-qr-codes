@@ -43,6 +43,7 @@ class RQRC_Post_Type {
 		add_filter( 'manage_rqrc_item_posts_columns', array( $this, 'add_custom_columns' ) );
 		add_action( 'manage_rqrc_item_posts_custom_column', array( $this, 'render_custom_columns' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_list_scripts' ) );
+		add_action( 'wp_ajax_rqrc_toggle_status', array( $this, 'ajax_toggle_status' ) );
 	}
 
 	/**
@@ -164,14 +165,22 @@ class RQRC_Post_Type {
 				if ( '' === $is_active ) {
 					$is_active = '1';
 				}
-
-				if ( '1' === $is_active ) {
-					echo '<span style="color: #46b450; font-weight: 600;">●</span> ';
-					esc_html_e( 'Active', 'reusable-qr-codes' );
-				} else {
-					echo '<span style="color: #dc3232; font-weight: 600;">●</span> ';
-					esc_html_e( 'Inactive', 'reusable-qr-codes' );
-				}
+				?>
+				<div class="rqrc-list-status-toggle">
+					<label class="rqrc-toggle-switch rqrc-toggle-switch-small">
+						<input
+							type="checkbox"
+							class="rqrc-status-toggle-input"
+							data-post-id="<?php echo esc_attr( $post_id ); ?>"
+							<?php checked( $is_active, '1' ); ?>
+						/>
+						<span class="rqrc-toggle-slider"></span>
+					</label>
+					<span class="rqrc-status-text">
+						<?php echo '1' === $is_active ? esc_html__( 'Active', 'reusable-qr-codes' ) : esc_html__( 'Inactive', 'reusable-qr-codes' ); ?>
+					</span>
+				</div>
+				<?php
 				break;
 
 			case 'rqrc_destination':
@@ -264,6 +273,61 @@ class RQRC_Post_Type {
 			RQRC_PLUGIN_URL . 'admin/css/admin.css',
 			array(),
 			RQRC_VERSION
+		);
+
+		// Pass AJAX URL and nonce to JavaScript.
+		wp_localize_script(
+			'rqrc-list-download',
+			'rqrcAjax',
+			array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'rqrc_toggle_status' ),
+			)
+		);
+	}
+
+	/**
+	 * AJAX handler to toggle QR code status.
+	 */
+	public function ajax_toggle_status() {
+		// Check nonce.
+		check_ajax_referer( 'rqrc_toggle_status', 'nonce' );
+
+		// Check if post ID is provided.
+		if ( ! isset( $_POST['post_id'] ) ) {
+			wp_send_json_error( array( 'message' => __( 'Post ID is required.', 'reusable-qr-codes' ) ) );
+		}
+
+		$post_id = absint( $_POST['post_id'] );
+
+		// Check permissions.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to edit this QR code.', 'reusable-qr-codes' ) ) );
+		}
+
+		// Verify post type.
+		if ( 'rqrc_item' !== get_post_type( $post_id ) ) {
+			wp_send_json_error( array( 'message' => __( 'Invalid post type.', 'reusable-qr-codes' ) ) );
+		}
+
+		// Get current status.
+		$current_status = get_post_meta( $post_id, '_rqrc_is_active', true );
+		if ( '' === $current_status ) {
+			$current_status = '1';
+		}
+
+		// Toggle status.
+		$new_status = ( '1' === $current_status ) ? '0' : '1';
+
+		// Update post meta.
+		update_post_meta( $post_id, '_rqrc_is_active', $new_status );
+
+		// Return success with new status.
+		wp_send_json_success(
+			array(
+				'status'     => $new_status,
+				'statusText' => ( '1' === $new_status ) ? __( 'Active', 'reusable-qr-codes' ) : __( 'Inactive', 'reusable-qr-codes' ),
+			)
 		);
 	}
 }

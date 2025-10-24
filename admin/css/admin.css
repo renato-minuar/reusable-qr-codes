@@ -472,6 +472,39 @@
 }
 
 /* ===========================
+   List View Status Toggle
+   =========================== */
+
+.rqrc-list-status-toggle {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	transition: opacity 0.2s ease;
+}
+
+.rqrc-status-text {
+	font-size: 13px;
+	font-weight: 500;
+}
+
+/* Smaller toggle switch for list view */
+.rqrc-toggle-switch-small {
+	width: 38px;
+	height: 20px;
+}
+
+.rqrc-toggle-switch-small .rqrc-toggle-slider:before {
+	height: 14px;
+	width: 14px;
+	left: 3px;
+	bottom: 3px;
+}
+
+.rqrc-toggle-switch-small input:checked + .rqrc-toggle-slider:before {
+	transform: translateX(18px);
+}
+
+/* ===========================
    List View Download Buttons
    =========================== */
 
