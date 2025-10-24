@@ -40,6 +40,7 @@ class RQRC_Redirects {
 	private function __construct() {
 		add_action( 'template_redirect', array( $this, 'handle_redirect' ) );
 		add_filter( 'template_include', array( $this, 'load_fallback_template' ) );
+		add_filter( 'wp_robots', array( $this, 'add_noindex_robots' ) );
 	}
 
 	/**
@@ -107,5 +108,26 @@ class RQRC_Redirects {
 		}
 
 		return $template;
+	}
+
+	/**
+	 * Add noindex directive to QR code pages.
+	 *
+	 * Prevents search engines from indexing redirect URLs.
+	 *
+	 * @param array $robots Associative array of robots directives.
+	 * @return array Modified robots directives.
+	 */
+	public function add_noindex_robots( $robots ) {
+		// Only apply to single rqrc_item posts.
+		if ( ! is_singular( 'rqrc_item' ) ) {
+			return $robots;
+		}
+
+		// Add noindex and nofollow.
+		$robots['noindex']  = true;
+		$robots['nofollow'] = true;
+
+		return $robots;
 	}
 }

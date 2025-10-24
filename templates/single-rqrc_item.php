@@ -10,6 +10,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Add noindex meta tag for search engines (fallback protection).
+add_action( 'wp_head', function() {
+	echo '<meta name="robots" content="noindex, nofollow" />' . "\n";
+}, 1 );
+
 get_header();
 ?>
 
