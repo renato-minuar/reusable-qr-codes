@@ -111,18 +111,6 @@ class RQRC_Meta_Boxes {
 			<p class="description">
 				<?php esc_html_e( 'This is where visitors will be redirected after scanning the QR code. You can change this anytime without reprinting the QR code.', 'reusable-qr-codes' ); ?>
 			</p>
-
-			<?php if ( 'publish' === $post->post_status ) : ?>
-				<div class="rqrc-permalink-info" style="margin-top: 15px; padding: 10px; background: #f0f0f1; border-left: 4px solid #2271b1;">
-					<p style="margin: 0;">
-						<strong><?php esc_html_e( 'QR Code URL:', 'reusable-qr-codes' ); ?></strong><br>
-						<code style="font-size: 12px; word-break: break-all;"><?php echo esc_url( get_permalink( $post->ID ) ); ?></code>
-					</p>
-					<p style="margin: 10px 0 0 0; font-size: 12px;">
-						<?php esc_html_e( 'This is the permanent URL encoded in your QR code. Share this QR code, and change the destination above anytime.', 'reusable-qr-codes' ); ?>
-					</p>
-				</div>
-			<?php endif; ?>
 		</div>
 		<?php
 	}
