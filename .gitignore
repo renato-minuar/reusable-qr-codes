@@ -26,7 +26,8 @@ npm-debug.log
 yarn-error.log
 
 # Composer (if you add PHP dependencies later)
-vendor/
+# Note: assets/vendor/ is tracked (JavaScript libraries)
+/vendor/
 composer.lock
 
 # Build files
