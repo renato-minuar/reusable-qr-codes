@@ -118,21 +118,26 @@ class RQRC_Meta_Boxes {
 				<?php esc_html_e( 'This is where visitors will be redirected after scanning the QR code. You can change this anytime without reprinting the QR code.', 'reusable-qr-codes' ); ?>
 			</p>
 
-			<p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
-				<label for="rqrc_is_active" style="display: flex; align-items: center; gap: 10px;">
-					<input
-						type="checkbox"
-						id="rqrc_is_active"
-						name="rqrc_is_active"
-						value="1"
-						<?php checked( $is_active, '1' ); ?>
-					/>
-					<strong><?php esc_html_e( 'QR Code is Active', 'reusable-qr-codes' ); ?></strong>
-				</label>
-			</p>
-			<p class="description">
-				<?php esc_html_e( 'When inactive, this QR code will redirect to your homepage instead of the destination URL above.', 'reusable-qr-codes' ); ?>
-			</p>
+			<div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+				<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+					<label class="rqrc-toggle-switch">
+						<input
+							type="checkbox"
+							id="rqrc_is_active"
+							name="rqrc_is_active"
+							value="1"
+							<?php checked( $is_active, '1' ); ?>
+						/>
+						<span class="rqrc-toggle-slider"></span>
+					</label>
+					<label for="rqrc_is_active" style="cursor: pointer;">
+						<strong><?php esc_html_e( 'QR Code is Active', 'reusable-qr-codes' ); ?></strong>
+					</label>
+				</div>
+				<p class="description">
+					<?php esc_html_e( 'When inactive, this QR code will redirect to your homepage instead of the destination URL above.', 'reusable-qr-codes' ); ?>
+				</p>
+			</div>
 		</div>
 		<?php
 	}

@@ -194,7 +194,7 @@ class RQRC_Post_Type {
 				?>
 				<div class="rqrc-list-download-buttons">
 					<button
-						class="button button-small rqrc-download-list-png"
+						class="rqrc-download-list-png"
 						data-permalink="<?php echo esc_attr( $permalink ); ?>"
 						data-title="<?php echo esc_attr( $title ); ?>"
 						title="<?php esc_attr_e( 'Download PNG', 'reusable-qr-codes' ); ?>"
@@ -202,7 +202,7 @@ class RQRC_Post_Type {
 						PNG
 					</button>
 					<button
-						class="button button-small rqrc-download-list-svg"
+						class="rqrc-download-list-svg"
 						data-permalink="<?php echo esc_attr( $permalink ); ?>"
 						data-title="<?php echo esc_attr( $title ); ?>"
 						title="<?php esc_attr_e( 'Download SVG', 'reusable-qr-codes' ); ?>"
@@ -258,11 +258,12 @@ class RQRC_Post_Type {
 			)
 		);
 
-		// Add inline styles for download buttons.
-		wp_add_inline_style(
-			'wp-admin',
-			'.rqrc-list-download-buttons { display: flex; gap: 4px; }
-			.rqrc-list-download-buttons .button-small { padding: 2px 8px; font-size: 11px; height: auto; line-height: 1.5; }'
+		// Enqueue admin styles for list view.
+		wp_enqueue_style(
+			'rqrc-admin',
+			RQRC_PLUGIN_URL . 'admin/css/admin.css',
+			array(),
+			RQRC_VERSION
 		);
 	}
 }
