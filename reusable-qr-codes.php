@@ -47,39 +47,10 @@ define( 'RQRC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'RQRC_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
- * Load plugin text domain for translations.
- * Uses determine_locale() to respect individual user language preferences.
+ * Translations are automatically loaded by WordPress based on the
+ * Text Domain and Domain Path headers in the plugin file.
+ * Manual loading is no longer required since WordPress 4.6+.
  */
-function rqrc_load_textdomain() {
-	load_plugin_textdomain(
-		'reusable-qr-codes',
-		false,
-		dirname( RQRC_PLUGIN_BASENAME ) . '/languages'
-	);
-}
-add_action( 'plugins_loaded', 'rqrc_load_textdomain' );
-
-/**
- * Determine locale for this plugin.
- * Respects user's individual language preference over site-wide setting.
- *
- * @param string $locale The current locale.
- * @return string The determined locale.
- */
-function rqrc_determine_locale( $locale ) {
-	// Use determine_locale() if available (WP 5.0+).
-	if ( function_exists( 'determine_locale' ) ) {
-		return determine_locale();
-	}
-
-	// Fallback for older WordPress versions.
-	if ( is_admin() && function_exists( 'get_user_locale' ) ) {
-		return get_user_locale();
-	}
-
-	return $locale;
-}
-add_filter( 'plugin_locale', 'rqrc_determine_locale', 10, 1 );
 
 /**
  * Load required files.

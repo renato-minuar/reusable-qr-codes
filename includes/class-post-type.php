@@ -102,6 +102,7 @@ class RQRC_Post_Type {
 	public function updated_messages( $messages ) {
 		global $post;
 
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only display of WordPress core revision parameter.
 		$messages['rqrc_item'] = array(
 			0  => '', // Unused. Messages start at index 1.
 			1  => __( 'QR Code updated successfully.', 'reusable-qr-codes' ),
@@ -123,6 +124,7 @@ class RQRC_Post_Type {
 			) : false,
 			10 => __( 'QR Code draft updated.', 'reusable-qr-codes' ),
 		);
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		return $messages;
 	}
