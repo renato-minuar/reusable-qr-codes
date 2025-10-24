@@ -230,10 +230,12 @@ class RQRC_Post_Type {
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue_list_scripts( $hook ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only check for admin page context.
 		// Only load on QR codes list page.
 		if ( 'edit.php' !== $hook || ! isset( $_GET['post_type'] ) || 'rqrc_item' !== $_GET['post_type'] ) {
 			return;
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		// Enqueue QR code library.
 		wp_enqueue_script(
