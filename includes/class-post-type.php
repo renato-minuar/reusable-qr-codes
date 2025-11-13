@@ -106,17 +106,18 @@ class RQRC_Post_Type {
 	public function updated_messages( $messages ) {
 		global $post;
 
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only display of WordPress core revision parameter.
+		$revision_id = isset( $_GET['revision'] ) ? absint( $_GET['revision'] ) : 0;
+
 		$messages['rqrc_item'] = array(
 			0  => '', // Unused. Messages start at index 1.
 			1  => __( 'QR Code updated successfully.', 'reusable-qr-codes' ),
 			2  => __( 'Field updated.', 'reusable-qr-codes' ),
 			3  => __( 'Field deleted.', 'reusable-qr-codes' ),
 			4  => __( 'QR Code updated.', 'reusable-qr-codes' ),
-			5  => isset( $_GET['revision'] ) ? sprintf(
+			5  => $revision_id ? sprintf(
 				/* translators: %s: Revision date */
 				__( 'QR Code restored to revision from %s.', 'reusable-qr-codes' ),
-				wp_post_revision_title( absint( $_GET['revision'] ), false )
+				wp_post_revision_title( $revision_id, false )
 			) : false,
 			6  => __( 'QR Code published successfully. Your QR code is now ready to use!', 'reusable-qr-codes' ),
 			7  => __( 'QR Code saved.', 'reusable-qr-codes' ),
@@ -128,7 +129,6 @@ class RQRC_Post_Type {
 			) : false,
 			10 => __( 'QR Code draft updated.', 'reusable-qr-codes' ),
 		);
-		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		return $messages;
 	}
@@ -230,12 +230,11 @@ class RQRC_Post_Type {
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue_list_scripts( $hook ) {
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only check for admin page context.
 		// Only load on QR codes list page.
-		if ( 'edit.php' !== $hook || ! isset( $_GET['post_type'] ) || 'rqrc_item' !== $_GET['post_type'] ) {
+		$post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET['post_type'] ) ) : '';
+		if ( 'edit.php' !== $hook || 'rqrc_item' !== $post_type ) {
 			return;
 		}
-		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		// Enqueue QR code library.
 		wp_enqueue_script(
@@ -301,6 +300,13 @@ class RQRC_Post_Type {
 		}
 
 		$post_id = absint( $_POST['post_id'] );
+
+		// Rate limiting: Prevent rapid toggling (2 second cooldown per user per post).
+		$transient_key = 'rqrc_toggle_' . get_current_user_id() . '_' . $post_id;
+		if ( get_transient( $transient_key ) ) {
+			wp_send_json_error( array( 'message' => __( 'Please wait before toggling again.', 'reusable-qr-codes' ) ) );
+		}
+		set_transient( $transient_key, true, 2 ); // 2 seconds cooldown.
 
 		// Check permissions.
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
